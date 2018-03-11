@@ -96,7 +96,8 @@ $(window).ready( () => {
   // Add a hidden error message and attach it to the student list
   const $noMatchError = $(` <li class="student-item cf no-match">
                               <div class="student-details">
-                                <h3>No students match your search query</h3>
+                                <h3>Not Found</h3>
+                                <span class="email">No students match your search query</span>
                               </div>
                               <div class="joined-details">
                                 <span class="date">(404)</span>
