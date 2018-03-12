@@ -1,18 +1,19 @@
 $(window).ready( () => {
+
   // This function creates a ul element and its nested pagination links
-  function createLinks (numberOfPages) {
+  const createLinks = numberOfPages => {
     const $ul = $('<ul></ul>');
 
     // Create and add li elements with proper class names
     for (let i = 1; i <= numberOfPages; i++) {
-      const li = $(`<li><a href="#">${i}</a>`);
-      if (i === 1) li.addClass('active');
-      $ul.append(li);
+      const $li = $(`<li><a href="#">${i}</a></li>`);
+      if (i === 1) $li.children('a').addClass('active');
+      $ul.append($li);
     }
 
-    // When a click on $ul is on an anchor element, pass target's text into load page function
     $ul.click(e => {
-      if ($(e.target).is('a')) loadPage($(e.target).text());
+      const $target = $(e.target);
+      if ($target.is('a')) loadPage($target.text())
     });
 
     return $ul;
@@ -21,35 +22,43 @@ $(window).ready( () => {
 
 
   // This function accepts a page number which is used to load a range of students
-  function loadPage (pageNumber) {
-    const lowIndex = 10 * (pageNumber - 1);
+  const loadPage = pageNumber => {
+    // Set proper link as 'active'
+    $('.pagination ul li').each((index, li) => {
+      const $a = $(li).children('a');
+      const isActive = (pageNumber - 1) === index;
+      ( isActive ? $a.addClass('active') : $a.removeClass('active') );
+    });
 
+    // Load proper students
+    const lowIndex = 10 * (pageNumber - 1);
     $students.each((index, student) => {
       const withinRange = index >= lowIndex && index < lowIndex + 10;
       ( withinRange ? $(student).show() : $(student).hide() );
     });
 
+    // Ensure 'not found' error is hidden
     studentNotFoundError(false);
   }
 
 
 
   // Search function accepts an input element, tests its value against student names, and shows or hides student elements as appropriate
-  function searchForStudents($input) {
+  const searchForStudents = $input => {
     const searchedName = $input.val().toLowerCase();
     if (searchedName === '') loadPage(1);
     else {
       let studentNotFound = true;
+      function show (student) {
+        $(student).show();
+        studentNotFound = false;
+      }
 
       $students.filter((index, student) => {
         const studentName = $(student).find('.student-details h3').text();
         const nameAbsent = studentName.search(searchedName) === -1;
 
-        if (nameAbsent) $(student).hide();
-        else {
-          $(student).show();
-          studentNotFound = false;
-        }
+        ( nameAbsent ? $(student).hide() : show(student) );
       });
 
       studentNotFoundError(studentNotFound);
@@ -59,9 +68,7 @@ $(window).ready( () => {
 
 
 // This function shows or hides error message based on 'true' or 'false' argument
-  function studentNotFoundError (showError) {
-    ( showError ? $('.no-match').show() : $('.no-match').hide() );
-  }
+  const studentNotFoundError = showError => ( showError ? $('.no-match').show() : $('.no-match').hide() );
 
 
 
@@ -98,9 +105,6 @@ $(window).ready( () => {
                               <div class="student-details">
                                 <h3>Not Found</h3>
                                 <span class="email">No students match your search query</span>
-                              </div>
-                              <div class="joined-details">
-                                <span class="date">(404)</span>
                               </div>
                             </li>`).hide();
 
