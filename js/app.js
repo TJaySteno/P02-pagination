@@ -61,6 +61,10 @@ $(window).ready( () => {
         const studentEmail = $(student).find('.student-details span').text();
         const present = ( studentName.search(searchedName) >= 0
                         || studentEmail.search(searchedName) >= 0 );
+<<<<<<< HEAD
+=======
+        console.log(present);
+>>>>>>> 605e9331ae34562698e5640df0a8f580872c7a62
 
         ( present ? show(student) : $(student).hide() );
       });
