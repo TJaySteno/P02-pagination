@@ -6,3 +6,9 @@ In this second project, I will be creating a program that accepts a list of stud
 *__Skills:__ jQuery, DOM traversal & manipulation, unobtrusive JavaScript*
 
 *__Personal Development Emphasis:__ modular code, concise comments, helpful names for variables & functions*
+
+---
+
+__Grade:__
+
+__Grader's Overall Comments:__ 

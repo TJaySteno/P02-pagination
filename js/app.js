@@ -24,6 +24,7 @@ $(window).ready( () => {
   // This function accepts a page number which is used to load a range of students
   const loadPage = pageNumber => {
     // Set proper link as 'active'
+    $('.pagination').show();
     $('.pagination ul li').each((index, li) => {
       const $a = $(li).children('a');
       const isActive = (pageNumber - 1) === index;
@@ -45,6 +46,7 @@ $(window).ready( () => {
 
   // Search function accepts an input element, tests its value against student names, and shows or hides student elements as appropriate
   const searchForStudents = $input => {
+    $('.pagination').hide();
     const searchedName = $input.val().toLowerCase();
     if (searchedName === '') loadPage(1);
     else {
@@ -56,9 +58,11 @@ $(window).ready( () => {
 
       $students.filter((index, student) => {
         const studentName = $(student).find('.student-details h3').text();
-        const nameAbsent = studentName.search(searchedName) === -1;
+        const studentEmail = $(student).find('.student-details span').text();
+        const present = ( studentName.search(searchedName) >= 0
+                        || studentEmail.search(searchedName) >= 0 );
 
-        ( nameAbsent ? $(student).hide() : show(student) );
+        ( present ? show(student) : $(student).hide() );
       });
 
       studentNotFoundError(studentNotFound);
@@ -68,7 +72,10 @@ $(window).ready( () => {
 
 
 // This function shows or hides error message based on 'true' or 'false' argument
-  const studentNotFoundError = showError => ( showError ? $('.no-match').show() : $('.no-match').hide() );
+  const studentNotFoundError = showError => {
+    showError ? $('.no-match').slideDown()
+              : $('.no-match').hide();
+  }
 
 
 
