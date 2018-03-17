@@ -9,6 +9,8 @@ In this second project, I will be creating a program that accepts a list of stud
 
 ---
 
-__Grade:__
+__Grade:__ Exceeds Expectations
 
-__Grader's Overall Comments:__ 
+__Grader's Overall Comments:__ "You did it! Everything is working as you would expect it to. Your code is so short that I'm truly impressed. I like that you make all functions ready to to be executed once the window is up, hence your window.ready() on the first line. It seems you are comfortable with looping through data and pulling out the specifics and evaluating a user's input. These tactics, and more, will be needed for your next project. I want to tell you now that it's going to require more writing than your first two projects.
+
+"Ask away when needed!!"
