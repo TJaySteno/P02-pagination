@@ -1,7 +1,7 @@
 ## Project 2
-### Pagination and Content Filter
+### [Pagination & Content Filter](https://tjaysteno.github.io/P02-pagination/ "See it now")
 
-In this second project, I will be creating a program that accepts a list of students, divides that list into pages of 10 students each, creates links to other pages, and updates the HTML dynamically as the user navigates through said pages. Additionally, as I aim to meet the criteria for "Exceeds Expectations", I will be adding in a feature that will allow a user to search students by name or, if no matches are found, will create a message in the HTML to notify him or her.
+In this second project, I created a program that accepts a list of students of any length. It divides that list into pages of 10 students each, creates pagination links, and updates the HTML dynamically as the user navigates through those pages. Additionally, I have added a search feature that allows a user to search for students by name or email.
 
 *__Skills:__ jQuery, DOM traversal & manipulation, unobtrusive JavaScript*
 
